@@ -102,30 +102,26 @@ INSERT INTO UnidadesTiempo (indice, unidad_tiempo) VALUES
 (5, "AÑOS"),
 (9, "NO ESPECIFICADO");
 
-CREATE TABLE `EgresosaHospital` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `claveUsuario` varchar(20) NOT NULL,
-  `fechaRegistro` date NOT NULL,
-  `edadEgreso` int NOT NULL,
-  `diasEstancia` int NOT NULL,
-  `idInstitucion` int NOT NULL,
-  `idMotivoEgreso` int NOT NULL,
-  `idIntervaloTiempos` int NOT NULL,
-  `idSexo` int NOT NULL,
-  `idGruposEdades` int NOT NULL,
-  `idUnidadesTiempo` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idInstitucion` (`idInstitucion`),
-  KEY `idMotivoEgreso` (`idMotivoEgreso`),
-  KEY `idIntervaloTiempos` (`idIntervaloTiempos`),
-  KEY `idSexo` (`idSexo`),
-  KEY `idGruposEdades` (`idGruposEdades`),
-  KEY `idUnidadesTiempo` (`idUnidadesTiempo`),
-  CONSTRAINT `egresosahospital_ibfk_1` FOREIGN KEY (`idInstitucion`) REFERENCES `Instituciones` (`id`),
-  CONSTRAINT `egresosahospital_ibfk_2` FOREIGN KEY (`idMotivoEgreso`) REFERENCES `MotivosEgreso` (`id`),
-  CONSTRAINT `egresosahospital_ibfk_3` FOREIGN KEY (`idIntervaloTiempos`) REFERENCES `IntervalosTiempos` (`id`),
-  CONSTRAINT `egresosahospital_ibfk_4` FOREIGN KEY (`idSexo`) REFERENCES `Sexos` (`id`),
-  CONSTRAINT `egresosahospital_ibfk_5` FOREIGN KEY (`idGruposEdades`) REFERENCES `GruposEdades` (`id`),
-  CONSTRAINT `egresosahospital_ibfk_6` FOREIGN KEY (`idUnidadesTiempo`) REFERENCES `UnidadesTiempo` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE EgresosaHospital
+(
+	id INT auto_increment PRIMARY KEY,
+    claveUsuario VARCHAR(20) NOT NULL,
+    fechaRegistro DATE NOT NULL,
+    edadEgreso INT NOT NULL,
+    diasEstancia INT NOT NULL,
+	idInstitucion INT NOT NULL, 
+    idMotivoEgreso INT NOT NULL,
+    idIntervaloTiempos INT NOT NULL,
+    idSexo INT NOT NULL,
+    idGruposEdades INT NOT NULL,
+    idUnidadesTiempo INT NOT NULL, 
+    
+    foreign key (idInstitucion) references Instituciones (id),
+    foreign key (idMotivoEgreso) references MotivosEgreso (id),
+    foreign key (idIntervaloTiempos) references IntervalosTiempos (id),
+    foreign key (idSexo) references Sexos (id),
+    foreign key (idGruposEdades) references GruposEdades (id),
+    foreign key (idUnidadesTiempo) references UnidadesTiempo (id)
+    
+);
